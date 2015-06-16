@@ -1,0 +1,283 @@
+//@udara setting the province id fectch by server via a JSON as parameter of loadToFields function
+function regionalOfficeTable() {
+    var tableData;
+    $.post("views/loadTables.php", {table: 'regionalOfficeData'}, function(e) {
+        //img\ajax\loading.gif
+        //$('#ajax_load').html('').append('<img src='+'img/ajax/loading.gif'+'>');
+        if (e === undefined || e.length === 0 || e === null) {
+            tableData += '<tr class="error text-centered"><td colspan="3"> No Data Found </td></tr>';
+            $('#regional_offices tbody').html('').append(tableData);
+        } else {
+            $.each(e, function(index, data) {
+                tableData += '<tr>';
+                tableData += '<td>' + data.id + '</td>';
+                tableData += '<td>' + data.Province + '</td>';
+                tableData += '<td>' + data.RO + '</td>';
+                tableData += '<td><div class="btn-group"><button class="btn btn-primary selmaincatData" value="' + data.id + '"  onClick="loadToFields('+index+', '+data.id+', '+data.Province_id+')"><i class="fa fa-plus-square fa-lg"></i>&nbsp;Update</button><button class="btn btn-danger delmaincatData" value="' + data.id + '"><i class="fa fa-trash-o fa-lg"></i>&nbsp;Delete</button></div></td>';
+                tableData += '</tr>';
+
+            });
+            //Load Json Data to Table
+            $('#regional_offices tbody').html(tableData);
+            /*
+             $('.delmaincatData').click(function() {
+             maincatDelete($(this).val());
+             });
+             //Select Data through select button
+             $('.selmaincatData').click(function() {
+             showmaincatActionBtn();
+             selectmaincatdata($(this).val());
+             }); */
+        }
+    }, "json");
+}
+
+function provinceTable() {
+    var tableData;
+    $.post("views/loadTables.php", {table: 'provinceData'}, function(e) {
+        if (e === undefined || e.length === 0 || e === null) {
+            tableData += '<tr class="error text-centered"><td colspan="3"> No Data Found </td></tr>';
+            $('#province_table tbody').html('').append(tableData);
+        } else {
+            $.each(e, function(index, data) {
+                tableData += '<tr>';
+                tableData += '<td>' + data.id + '</td>';
+                tableData += '<td>' + data.code + '</td>';
+                tableData += '<td>' + data.description + '</td>';
+                tableData += '<td><div class="btn-group"><button class="btn btn-primary selmaincatData" value="' + data.id + '"><i class="fa fa-plus-square fa-lg"></i>&nbsp;Update</button><button class="btn btn-danger delmaincatData" value="' + data.id + '"><i class="fa fa-trash-o fa-lg"></i>&nbsp;Delete</button></div></td>';
+                tableData += '</tr>';
+
+            });
+            //Load Json Data to Table
+            $('#province_table tbody').html(tableData);
+        }
+    }, "json");
+}
+
+function districtTable() {
+    var tableData;
+    $.post("views/loadTables.php", {table: 'districtData'}, function(e) {
+        if (e === undefined || e.length === 0 || e === null) {
+            tableData += '<tr class="error text-centered"><td colspan="3"> No Data Found </td></tr>';
+            $('#district_table tbody').html('').append(tableData);
+        } else {
+            $.each(e, function(index, data) {
+                tableData += '<tr>';
+                tableData += '<td>' + data.id + '</td>';
+                tableData += '<td>' + data.District + '</td>';
+                tableData += '<td>' + data.Province + '</td>';
+                tableData += '<td><div class="btn-group"><button class="btn btn-primary selmaincatData" value="' + data.id + '"><i class="fa fa-plus-square fa-lg"></i>&nbsp;Update</button><button class="btn btn-danger delmaincatData" value="' + data.id + '"><i class="fa fa-trash-o fa-lg"></i>&nbsp;Delete</button></div></td>';
+                tableData += '</tr>';
+
+            });
+            //Load Json Data to Table
+            $('#district_table tbody').html(tableData);
+        }
+    }, "json");
+}
+
+function designationsTable() {
+    var tableData;
+    $.post("views/loadTables.php", {table: 'designationsData'}, function(e) {
+        if (e === undefined || e.length === 0 || e === null) {
+            tableData += '<tr class="error text-centered"><td colspan="3"> No Data Found </td></tr>';
+            $('#designations_table tbody').html('').append(tableData);
+        } else {
+            $.each(e, function(index, data) {
+                tableData += '<tr>';
+                tableData += '<td>' + data.id + '</td>';
+                tableData += '<td>' + data.code + '</td>';
+                tableData += '<td>' + data.description + '</td>';
+                tableData += '<td><div class="btn-group"><button class="btn btn-primary selmaincatData" value="' + data.id + '"><i class="fa fa-plus-square fa-lg"></i>&nbsp;Update</button><button class="btn btn-danger delmaincatData" value="' + data.id + '"><i class="fa fa-trash-o fa-lg"></i>&nbsp;Delete</button></div></td>';
+                tableData += '</tr>';
+
+            });
+            //Load Json Data to Table
+            $('#designations_table tbody').html(tableData);
+        }
+    }, "json");
+}
+
+function gradesTable() {
+    var tableData;
+    $.post("views/loadTables.php", {table: 'gradesData'}, function(e) {
+        if (e === undefined || e.length === 0 || e === null) {
+            tableData += '<tr class="error text-centered"><td colspan="3"> No Data Found </td></tr>';
+            $('#grades_table tbody').html('').append(tableData);
+        } else {
+            $.each(e, function(index, data) {
+                tableData += '<tr>';
+                tableData += '<td>' + data.id + '</td>';
+                tableData += '<td>' + data.description + '</td>';
+                tableData += '<td><div class="btn-group"><button class="btn btn-primary selmaincatData" value="' + data.id + '"><i class="fa fa-plus-square fa-lg"></i>&nbsp;Update</button><button class="btn btn-danger delmaincatData" value="' + data.id + '"><i class="fa fa-trash-o fa-lg"></i>&nbsp;Delete</button></div></td>';
+                tableData += '</tr>';
+
+            });
+            //Load Json Data to Table
+            $('#grades_table tbody').html(tableData);
+        }
+    }, "json");
+}
+
+function agaDivTable() {
+    var tableData;
+    $.post("views/loadTables.php", {table: 'agaDivData'}, function(e) {
+        if (e === undefined || e.length === 0 || e === null) {
+            tableData += '<tr class="error text-centered"><td colspan="3"> No Data Found </td></tr>';
+            $('#aga_div_table tbody').html('').append(tableData);
+        } else {
+            $.each(e, function(index, data) {
+                tableData += '<tr>';
+                tableData += '<td>' + data.id + '</td>';
+                tableData += '<td>' + data.code + '</td>';
+                tableData += '<td>' + data.description + '</td>';
+                tableData += '<td><div class="btn-group"><button class="btn btn-primary selmaincatData" value="' + data.id + '"><i class="fa fa-plus-square fa-lg"></i>&nbsp;Update</button><button class="btn btn-danger delmaincatData" value="' + data.id + '"><i class="fa fa-trash-o fa-lg"></i>&nbsp;Delete</button></div></td>';
+                tableData += '</tr>';
+
+            });
+            //Load Json Data to Table
+            $('#aga_div_table tbody').html(tableData);
+        }
+    }, "json");
+}
+
+function electorateDivTable() {
+    var tableData;
+    $.post("views/loadTables.php", {table: 'elecDivData'}, function(e) {
+        if (e === undefined || e.length === 0 || e === null) {
+            tableData += '<tr class="error text-centered"><td colspan="3"> No Data Found </td></tr>';
+            $('#electorate_table tbody').html('').append(tableData);
+        } else {
+            $.each(e, function(index, data) {
+                tableData += '<tr>';
+                tableData += '<td>' + data.id + '</td>';
+                tableData += '<td>' + data.des + '</td>';
+                tableData += '<td>' + data.Province + '</td>';
+                tableData += '<td>' + data.dess + '</td>';
+                tableData += '<td><div class="btn-group"><button class="btn btn-primary selmaincatData" value="' + data.id + '"  onClick="loadToFields('+index+', '+data.id+', '+ data.province_id +')"><i class="fa fa-plus-square fa-lg"></i>&nbsp;Update</button><button class="btn btn-danger delmaincatData" value="' + data.id + '"><i class="fa fa-trash-o fa-lg"></i>&nbsp;Delete</button></div></td>';
+                tableData += '</tr>';
+
+            });
+            //Load Json Data to Table
+            $('#electorate_table tbody').html(tableData);
+        }
+    }, "json");
+}
+
+function gsDivTable() {
+    var tableData;
+    $.post("views/loadTables.php", {table: 'gsDivData'}, function(e) {
+        if (e === undefined || e.length === 0 || e === null) {
+            tableData += '<tr class="error text-centered"><td colspan="3"> No Data Found </td></tr>';
+            $('#gs_div_table tbody').html('').append(tableData);
+        } else {
+            $.each(e, function(index, data) {
+                tableData += '<tr>';
+                tableData += '<td>' + data.id + '</td>';
+                tableData += '<td>' + data.district + '</td>';
+                tableData += '<td>' + data.aga_div + '</td>';
+                tableData += '<td>' + data.description + '</td>';
+                tableData += '<td><div class="btn-group"><button class="btn btn-primary selmaincatData" value="' + data.id + '"  onClick="loadToFields('+index+', '+data.id+', '+data.province_id+', '+data.district_id+', '+data.aga_id+')"><i class="fa fa-plus-square fa-lg"></i>&nbsp;Update</button><button class="btn btn-danger delmaincatData" value="' + data.id + '"><i class="fa fa-trash-o fa-lg"></i>&nbsp;Delete</button></div></td>';
+                tableData += '</tr>';
+
+            });
+            //Load Json Data to Table
+            $('#gs_div_table tbody').html(tableData);
+        }
+    }, "json");
+}
+
+function instituteTable() {
+    var tableData;
+    $.post("views/loadTables.php", {table: 'instituteData'}, function(e) {
+        if (e === undefined || e.length === 0 || e === null) {
+            tableData += '<tr class="error text-centered"><td colspan="3"> No Data Found </td></tr>';
+            $('#institute_table tbody').html('').append(tableData);
+        } else {
+            $.each(e, function(index, data) {
+                tableData += '<tr>';
+                tableData += '<td>' + data.id + '</td>';
+                tableData += '<td>' + data.code + '</td>';
+                tableData += '<td>' + data.description + '</td>';
+                tableData += '<td><div class="btn-group"><button class="btn btn-primary selmaincatData" value="' + data.id + '"  onClick="loadToFields('+index+', '+data.id+')"><i class="fa fa-plus-square fa-lg"></i>&nbsp;Update</button><button class="btn btn-danger delmaincatData" value="' + data.id + '"><i class="fa fa-trash-o fa-lg"></i>&nbsp;Delete</button></div></td>';
+                tableData += '</tr>';
+
+            });
+            //Load Json Data to Table
+            $('#institute_table tbody').html(tableData);
+        }
+    }, "json");
+}
+
+function BusinessUnitTable() {
+    var tableData;
+    $.post("views/loadTables.php", {table: 'bUnitData'}, function(e) {
+        if (e === undefined || e.length === 0 || e === null) {
+            tableData += '<tr class="error text-centered"><td colspan="3"> No Data Found </td></tr>';
+            $('#bu_table tbody').html('').append(tableData);
+        } else {
+            $.each(e, function(index, data) {
+                tableData += '<tr>';
+                tableData += '<td>' + data.id + '</td>';
+                tableData += '<td>' + data.ro + '</td>';
+                tableData += '<td>' + data.main_cat + '</td>';
+                tableData += '<td>' + data.sub_cat + '</td>';
+                tableData += '<td>' + data.des + '</td>';
+                tableData += '<td><div class="btn-group"><button class="btn btn-primary selmaincatData" value="' + data.id + '"  onClick="loadToFields('+index+', '+data.id+', '+data.Province_id+')"><i class="fa fa-plus-square fa-lg"></i>&nbsp;Update</button><button class="btn btn-danger delmaincatData" value="' + data.id + '"><i class="fa fa-trash-o fa-lg"></i>&nbsp;Delete</button></div></td>';
+                tableData += '</tr>';
+
+            });
+            //Load Json Data to Table
+            $('#bu_table tbody').html(tableData);
+        }
+    }, "json");
+}
+
+
+/********************************************
+ *          User Table Data Loading         *
+ ********************************************/
+
+function userTable() {
+    var tableData;
+    $.post("views/loadTables.php", {table: 'userSideTable'}, function(e) {
+        if (e === undefined || e.length === 0 || e === null) {
+            tableData += '<tr class="error text-centered"><td colspan="4"> No Data Found </td></tr>';
+            $('#user_side_table tbody').html('').append(tableData);
+        } else {
+            $.each(e, function(index, data) {
+                tableData += '<tr>';
+                tableData += '<td>' + index + '</td>';
+                tableData += '<td>' + data.user_id + '</td>';
+                tableData += '<td>' + data.user_fname + '</td>';
+                tableData += '<td>' + data.user_lname + '</td>';
+                tableData += '<td>' +
+                    '<div class="btn-group"><button class="btn btn-primary selUserData" value="' + data.user_id + '"><i class="fa fa-plus-square fa-lg"></i>&nbsp;Select</button>' +
+                    '<button class="btn btn-danger delVoteData" value="' + data.user_id + '"><i class="fa fa-trash-o fa-lg"></i>&nbsp;Delete</button></div>' +
+                    '</td>';
+                tableData += '</tr>';
+            });
+            //Load Json Data to Table
+            $('#user_side_table tbody').html(tableData);
+
+            ////////// DELETE  SUB ONE CAT DATA ///////////
+            $('.delVoteData').click(function() {
+                VoteDelete($(this).val());
+            });
+
+            //Select Data through select button
+            $('.selVoteData').click(function() {
+                VoteSelectedID = $(this).val();
+                showVoteActionBtn();
+                $.post("views/commenSettingView.php", {findVoteId: 'find', VoteSelectedID: VoteSelectedID}, function(up) {
+                    $.each(up, function(index, data) {
+                        $('#voteID').val(data.id);
+                        $('#votename').val(data.vote_name);
+                        $('#votecode').val(data.vote_code);
+                    });
+                }, "json");
+            });
+        }
+    }, "json");
+}
+

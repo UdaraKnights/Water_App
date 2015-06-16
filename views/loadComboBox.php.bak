@@ -1,0 +1,207 @@
+<?php
+
+require_once '../com.water.app/config/dbc.php';
+require_once '../class/database.php';
+require_once '../class/systemSetting.php';
+$dbClass = new database();
+$system = new setting();
+
+if (array_key_exists("comboBox", $_POST)) {
+    if ($_POST['comboBox'] == 'maincatNameComboBox') {
+        echo $system->prepareSelectQueryForJSON("SELECT
+mi_main_income_category.id,
+mi_main_income_category.main_cat_name
+FROM
+mi_main_income_category");
+    } else if ($_POST['comboBox'] == 'subcatComboBox') {
+        $mainCatId = $_POST['mainCatId'];
+        echo $system->prepareSelectQueryForJSON("SELECT
+mi_sub_one_income_category.id,
+mi_sub_one_income_category.sub_one_category
+FROM
+mi_sub_one_income_category
+WHERE
+mi_sub_one_income_category.main_cat_id = '{$mainCatId}'");
+    } else if (array_key_exists("comboBox", $_POST))
+        if ($_POST['comboBox'] == 'voteCodeComboBox') {
+            echo $system->prepareSelectQueryForJSON("SELECT
+mi_votes.id,
+mi_votes.vote_name,
+mi_votes.vote_code
+FROM
+mi_votes");
+        } else if (array_key_exists("comboBox", $_POST))
+            if ($_POST['comboBox'] == 'paymenttypeComboBox') {
+                echo $system->prepareSelectQueryForJSON("SELECT
+mi_payment_types.id,
+mi_payment_types.payment_type
+FROM
+mi_payment_types");
+            } else if ($_POST['comboBox'] == 'subcatTwoComboBox') {
+                $subcatoneId = $_POST['subcatoneId'];
+                echo $system->prepareSelectQueryForJSON("SELECT
+mi_sub_two_income_category.id,
+mi_sub_two_income_category.sub_two_cat_name,
+mi_sub_two_income_category.sub_one_cat_id
+FROM
+mi_sub_two_income_category
+WHERE
+mi_sub_two_income_category.sub_one_cat_id = '{$subcatoneId}'");
+            }
+            else if ($_POST['comboBox'] == 'incomeitemBox') {
+        $voteCatId = $_POST['voteId'];
+        echo $system->prepareSelectQueryForJSON("SELECT
+mi_other_category_items.vote_category_name,
+mi_other_category_items.id
+FROM
+mi_other_category_items
+WHERE
+mi_other_category_items.vote_id = '{$voteCatId}'");
+    }
+         
+  //cat vice****************************
+    else if ($_POST['comboBox'] == 'votenameBox') {
+        $catviceID = $_POST['voteID'];
+        echo $system->prepareSelectQueryForJSON("SELECT
+mi_votes.vote_code,
+mi_votes.id
+FROM
+mi_sub_two_income_category
+INNER JOIN mi_votes ON mi_sub_two_income_category.vote_id = mi_votes.id
+INNER JOIN mi_sub_one_income_category ON mi_sub_two_income_category.sub_one_cat_id = mi_sub_one_income_category.id
+WHERE
+mi_sub_one_income_category.id = '{$catviceID}'");
+    }
+    else if ($_POST['comboBox'] == 'subtwocategoryBox') {
+        $votecatID = $_POST['subtwocategoryID'];
+        echo $system->prepareSelectQueryForJSON("SELECT
+mi_sub_two_income_category.sub_two_cat_name,
+mi_sub_two_income_category.id
+FROM
+mi_sub_two_income_category
+INNER JOIN mi_votes ON mi_sub_two_income_category.vote_id = mi_votes.id
+WHERE
+mi_votes.id = '{$votecatID}'");
+    } else if ($_POST['comboBox'] == 'genderComboBox') {
+        echo $system->prepareSelectQueryForJSON("SELECT
+hs_t_civil_status.id,
+hs_t_civil_status.description
+FROM
+hs_t_civil_status");
+    }else if ($_POST['comboBox'] == 'agaDivComboBox') {
+        $districtId = $_POST['districtId'];
+        echo $system->prepareSelectQueryForJSON("SELECT
+hs_t_aga_division.id,
+hs_t_aga_division.description
+FROM
+hs_t_aga_division
+where  hs_t_aga_division.district_id = '{$districtId}' ");
+    }else if ($_POST['comboBox'] == 'electorateComboBox') {
+        $provinceId = $_POST['provinceId'];
+        echo $system->prepareSelectQueryForJSON("SELECT
+hs_t_electorate.id,
+hs_t_electorate.description
+FROM
+hs_t_electorate
+where hs_t_electorate.province_id = '{$provinceId}'");
+    }else if ($_POST['comboBox'] == 'gsDivisionComboBox') {
+        $agaDivId = $_POST['agaDivId'];
+        echo $system->prepareSelectQueryForJSON("SELECT
+hs_t_gs_division.id,
+hs_t_gs_division.description
+FROM
+hs_t_gs_division
+where hs_t_gs_division.aga_id = '{$agaDivId}'");
+    }else if ($_POST['comboBox'] == 'nationalityComboBox') {
+        echo $system->prepareSelectQueryForJSON("SELECT
+hs_t_nationality.id,
+hs_t_nationality.description
+FROM
+hs_t_nationality");
+    }else if ($_POST['comboBox'] == 'civilStatComboBox') {
+        echo $system->prepareSelectQueryForJSON("SELECT
+hs_t_civil_status.id,
+hs_t_civil_status.description
+FROM
+hs_t_civil_status");
+    }else if ($_POST['comboBox'] == 'provinceComboBox') {
+        echo $system->prepareSelectQueryForJSON("SELECT
+hs_t_province.id,
+hs_t_province.description
+FROM
+hs_t_province");
+    }else if ($_POST['comboBox'] == 'districtComboBox') {
+        $provinceId = $_POST['provinceId'];
+        echo $system->prepareSelectQueryForJSON("SELECT
+hs_t_district.id,
+hs_t_district.description
+FROM
+hs_t_district
+where hs_t_district.province_id = '{$provinceId}'");
+    }else if ($_POST['comboBox'] == 'regionalComboBox') {
+        $provinceId = $_POST['provinceId'];
+        echo $system->prepareSelectQueryForJSON("SELECT
+hs_t_regional_office.id,
+hs_t_regional_office.description
+FROM
+hs_t_regional_office
+where hs_t_regional_office.province_id = '{$provinceId}'");
+    }else if ($_POST['comboBox'] == 'spuCatComboBox') {
+        echo $system->prepareSelectQueryForJSON("SELECT
+hs_t_main_category.id,
+hs_t_main_category.description
+FROM
+hs_t_main_category");
+    }else if ($_POST['comboBox'] == 'spuSubCatComboBox') {
+        echo $system->prepareSelectQueryForJSON("SELECT
+hs_t_sub_category.id,
+hs_t_sub_category.description
+FROM
+hs_t_sub_category");
+    }else if ($_POST['comboBox'] == 'gradeComboBox') {
+        echo $system->prepareSelectQueryForJSON("SELECT
+hs_t_grade.id,
+hs_t_grade.description
+FROM
+hs_t_grade");
+    }else if ($_POST['comboBox'] == 'designationComboBox') {
+        echo $system->prepareSelectQueryForJSON("SELECT
+hs_t_designation.id,
+hs_t_designation.description
+FROM
+hs_t_designation");
+    }else if ($_POST['comboBox'] == 'natureOfAppointComboBox') {
+        echo $system->prepareSelectQueryForJSON("SELECT
+hs_t_nature_appoint.id,
+hs_t_nature_appoint.description
+FROM
+hs_t_nature_appoint");
+    }else if ($_POST['comboBox'] == 'instituteComboBox') {
+        echo $system->prepareSelectQueryForJSON("SELECT
+hs_t_institute.id,
+hs_t_institute.description
+FROM
+hs_t_institute");
+    }else if ($_POST['comboBox'] == 'religionComboBox') {
+        echo $system->prepareSelectQueryForJSON("SELECT
+hs_t_religion.id,
+hs_t_religion.description
+FROM
+hs_t_religion");
+    }else if ($_POST['comboBox'] == 'guardianTypeComboBox') {
+        echo $system->prepareSelectQueryForJSON("SELECT
+hs_t_guardian_category.code,
+hs_t_guardian_category.description
+FROM
+hs_t_guardian_category");
+    }else if ($_POST['comboBox'] == 'employeeComboBox') {
+        echo $system->prepareSelectQueryForJSON("SELECT
+hs_t_employee.id,
+hs_t_employee.full_name
+FROM
+hs_t_employee");
+    }
+}
+
+
+

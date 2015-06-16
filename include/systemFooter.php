@@ -1,0 +1,21 @@
+<script type="text/javascript" src="js/jquery.js"></script>       
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/alertify.js"></script>
+<script type="text/javascript" src="js/chosen.jquery.js"></script>
+<script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="js/bootstrap-switch.js"></script>
+<script type="text/javascript" src="js/jquery.backstretch.min.js"></script>
+<script type="text/javascript" src="js/hideShowPassword.js"></script>
+<script type="text/javascript" src="js/loadTables.js"></script>
+<script type="text/javascript" src="js/loadComboBox.js"></script>
+<script type="text/javascript" src="js/appFunctions.js"></script>
+<script type="text/javascript" src="js/systemConfig.js"></script>
+<script type="text/javascript" src="js/bootstrap-timepicker.js"></script>
+<script type="text/javascript" src="js/bootstrap3-typeahead.js"></script>
+<script type="text/javascript" src="js/tableFunctions.js"></script>
+<script type="text/javascript" src="js/jquery.multi-select.js"></script>
+<script type="text/javascript" src="js/jquery-ui.js"></script>
+<script type="text/javascript" src="js/pageFunctions.js"></script>
+<script type="text/javascript" src="js/MetroJs.min.js"></script>
+<script type="text/javascript" src="js/typehead.js"></script>
+

@@ -1,0 +1,76 @@
+<?php
+
+require_once '../com.water.app/config/dbc.php';
+require_once '../class/database.php';
+require_once '../class/systemSetting.php';
+$dbClass = new database();
+$system = new setting();
+
+if (array_key_exists("table", $_POST)) {
+    //loading Regional office master data
+    if ($_POST['table'] == 'regionalOfficeData') {
+        echo $system->prepareSelectQueryForJSON("SELECT hs_t_regional_office.id, hs_t_province.description As 'Province', hs_t_province.id As 'Province_id', hs_t_regional_office.description As 'RO' FROM hs_t_regional_office, healthservice.hs_t_province where hs_t_regional_office.province_id=hs_t_province.id");
+    }
+    //loading privince master data
+    else if($_POST['table'] == 'provinceData'){
+        echo $system->prepareSelectQueryForJSON("SELECT id, code, description FROM hs_t_province");
+    }
+    //loading district data
+    else if($_POST['table'] == 'districtData'){
+        echo $system->prepareSelectQueryForJSON("SELECT hs_t_district.id, hs_t_district.description As 'District', hs_t_province.description As 'Province' FROM hs_t_district, hs_t_province where hs_t_district.province_id = hs_t_province.id");
+    }
+    //loading designations data
+    else if($_POST['table'] == 'designationsData'){
+        echo $system->prepareSelectQueryForJSON("SELECT id, code, description FROM hs_t_designation");
+    }
+    //loading grades data
+    else if($_POST['table'] == 'gradesData'){
+        echo $system->prepareSelectQueryForJSON("SELECT id, description FROM hs_t_grade");
+    }
+    //loading aga divisions data
+    else if($_POST['table'] == 'agaDivData'){
+        echo $system->prepareSelectQueryForJSON("SELECT id, code, description FROM hs_t_aga_division");
+    }
+    //loading electorate divisions data
+    else if($_POST['table'] == 'elecDivData'){
+        echo $system->prepareSelectQueryForJSON("SELECT e.id, p.description AS 'Province', e.description AS 'des', p.id AS province_id
+            FROM hs_t_electorate e, hs_t_province p
+            WHERE e.province_id=p.id");
+    }
+    //loading GS divisions data
+    else if($_POST['table'] == 'gsDivData'){
+        echo $system->prepareSelectQueryForJSON("SELECT gs.id, gs.description, aga.description AS 'aga_div' ,
+            d.description AS 'district' , p.id AS province_id, d.id AS district_id, aga.id AS aga_id
+            FROM hs_t_gs_division gs, hs_t_aga_division aga, hs_t_district d , hs_t_province p
+            WHERE gs.aga_id=aga.id
+            AND aga.district_id=d.id
+            AND P.ID = d.province_id");
+    }
+    //loading institute data
+    else if($_POST['table'] == 'instituteData'){
+        echo $system->prepareSelectQueryForJSON("SELECT id, code, description FROM hs_t_institute");
+    }
+    //loading Business Units data
+    else if($_POST['table'] == 'bUnitData'){
+        echo $system->prepareSelectQueryForJSON("SELECT hs_t_business_unit.id, hs_t_business_unit.description As 'des', hs_t_main_category.description As 'main_cat', hs_t_sub_category.description As 'sub_cat', hs_t_regional_office.description  As 'ro' FROM hs_t_business_unit, hs_t_main_category, hs_t_sub_category,hs_t_regional_office WHERE hs_t_business_unit.main_cat=hs_t_main_category.id AND hs_t_business_unit.sub_cat=hs_t_sub_category.id AND hs_t_business_unit.ro_id=hs_t_regional_office.id");
+    } else if ($_POST['table'] == 'AllUserControlTable') {
+        echo $system->prepareSelectQueryForJSON("SELECT
+tl_system_users.id,
+tl_system_users.user_name,
+tl_system_users.user_level,
+tl_system_users.pwd,
+tl_system_users.date,
+tl_system_users.approved
+FROM
+tl_system_users");
+    }
+}
+    
+
+
+
+
+
+
+
+

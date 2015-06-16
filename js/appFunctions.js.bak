@@ -1,0 +1,304 @@
+function RegionalData(provID, dec, id,dataReq) {
+    if(dataReq=='save'){
+        $.post('com.water.app/service/masterDataService.php', {provinceID: provID, description: dec, service:'save', id:id, masters_save:'regional'}, function(data){
+            if(data.msgType === 1){
+                alertify.success(data.msg);
+                regionalOfficeTable();
+            }else if(data.msgType === 2){
+                alertify.error(data.msg);
+            }
+        }, "json");
+    } else if(dataReq == 'update'){
+        $.post('com.water.app/service/masterDataService.php', {provinceID: provID, description: dec, service:'update', id:id, masters_save:'regional'}, function(data){
+            if(data.msgType === 1){
+                alertify.success(data.msg);
+                regionalOfficeTable();
+            }else if(data.msgType === 2){
+                alertify.error(data.msg);
+            }
+        }, "json");
+    }else if(dataReq == 'delete'){
+
+    }
+}
+
+function ProvinceData (provCode, dec, id, dataReq) {
+    if(dataReq == 'save'){
+        $.post('com.water.app/service/masterDataService.php', {provinceCode: provCode, description: dec, service:'save', id:id, masters_save:'province'}, function(data){
+            if(data.msgType === 1){
+                alertify.success(data.msg);
+                provinceTable();
+            }else if(data.msgType === 2){
+                alertify.error(data.msg);
+            }
+        }, "json");
+    }else if (dataReq == 'update'){
+
+    }else if(dataReq == 'delete'){
+
+    }
+}
+
+function DistrictData (provID, destrictName, id, dataReq) {
+    if(dataReq == 'save'){
+        $.post('com.water.app/service/masterDataService.php', {provinceID: provID, destrict_name: destrictName, service:'save', id:id, masters_save:'district'}, function(data){
+            if(data.msgType === 1){
+                alertify.success(data.msg);
+                districtTable();
+            }else if(data.msgType === 2){
+                alertify.error(data.msg);
+            }
+        }, "json");
+    }else if (dataReq == 'update'){
+
+    }else if(dataReq == 'delete'){
+
+    }
+}
+
+function DesignationData (desig_code, desig_des, id, dataReq){
+    if(dataReq == 'save'){
+        $.post('com.water.app/service/masterDataService.php', {Designation_Code: desig_code, Designation_Des: desig_des, service:'save', id:id, masters_save:'designation'}, function(data){
+            if(data.msgType === 1){
+                alertify.success(data.msg);
+                designationsTable();
+            }else if(data.msgType === 2){
+                alertify.error(data.msg);
+            }
+        }, "json");
+    }else if (dataReq == 'update'){
+
+    }else if(dataReq == 'delete'){
+
+    }
+}
+
+function agaDivData (provID, districtID, agaDivCode, des, id, dataReq){
+//    alert(provID+" "+districtID+" "+ agaDivCode+" "+ des+" "+ id+" "+ dataReq);
+    if(dataReq == 'save'){
+        $.post('com.water.app/service/masterDataService.php', {provinceID: provID, districtID: districtID, aga_div_code: agaDivCode, description: des, service:'save', id:id, masters_save:'agaDiv'}, function(data){
+            if(data.msgType === 1){
+                alertify.success(data.msg);
+                agaDivTable();
+            }else if(data.msgType === 2){
+                alertify.error(data.msg);
+            }
+        }, "json");
+    }else if (dataReq == 'update'){
+
+    }else if(dataReq == 'delete'){
+
+    }
+}
+
+function GradeData (grade_code, grade_des, id, dataReq){
+    if(dataReq == 'save'){
+        $.post('com.water.app/service/masterDataService.php', {Grade_Code: grade_code, Grade_Des: grade_des, service:'save', id:id, masters_save:'grade'}, function(data){
+            if(data.msgType === 1){
+                alertify.success(data.msg);
+                gradesTable();
+            }else if(data.msgType === 2){
+                alertify.error(data.msg);
+            }
+        }, "json");
+    }else if (dataReq == 'update'){
+
+    }else if(dataReq == 'delete'){
+
+    }
+}
+
+function ElectorateData (provID, elect_des, id, dataReq){
+    if(dataReq == 'save'){
+        $.post('com.water.app/service/masterDataService.php', {prov_id: provID, electo_Des: elect_des, service:'save', id:id, masters_save:'electorate'}, function(data){
+            if(data.msgType === 1){
+                alertify.success(data.msg);
+                electorateDivTable();
+            }else if(data.msgType === 2){
+                alertify.error(data.msg);
+            }
+        }, "json");
+    }else if (dataReq == 'update'){
+
+    }else if(dataReq == 'delete'){
+
+    }
+}
+
+function GsDivData (agaID, gsDiv_des, id, dataReq){
+    if(dataReq == 'save'){
+        $.post('com.water.app/service/masterDataService.php', {aga_id: agaID, gs_div_Des: gsDiv_des, service:'save', id:id, masters_save:'gsDiv'}, function(data){
+            if(data.msgType === 1){
+                alertify.success(data.msg);
+                gsDivTable();
+            }else if(data.msgType === 2){
+                alertify.error(data.msg);
+            }
+        }, "json");
+    }else if (dataReq == 'update'){
+
+    }else if(dataReq == 'delete'){
+
+    }
+}
+
+function InstituteData (insCode, insDes, id, dataReq){
+    if(dataReq == 'save'){
+        $.post('com.water.app/service/masterDataService.php', {ins_code: insCode, ins_Des: insDes, service:'save', id:id, masters_save:'institute'}, function(data){
+            if(data.msgType === 1){
+                alertify.success(data.msg);
+                instituteTable();
+            }else if(data.msgType === 2){
+                alertify.error(data.msg);
+            }
+        }, "json");
+    }else if (dataReq == 'update'){
+
+    }else if(dataReq == 'delete'){
+
+    }
+}
+
+function BusinessUnitData (ro_id, main_cat, sub_cat, des, id, dataReq){
+    if(dataReq == 'save'){
+        $.post('com.water.app/service/masterDataService.php', {roID: ro_id, mainCat: main_cat, subCat:sub_cat, desc:des, service:'save', id:id, masters_save:'businessUnit'}, function(data){
+            if(data.msgType === 1){
+                alertify.success(data.msg);
+                BusinessUnitTable();
+            }else if(data.msgType === 2){
+                alertify.error(data.msg);
+            }
+        }, "json");
+    }else if (dataReq == 'update'){
+
+    }else if(dataReq == 'delete'){
+
+    }
+}
+
+
+function employeeData(empId, fullName, nicNo, addr1,addr2,addr3,contactRes,contactMob,contactOff,
+                      email,gender,dob,provinceId, districtId,agaDivId,gsDivId,electroId,nationalId,
+                      civilStatId,drivLicNo,childCnt,religion,id, dataReq){
+//    alert('empId '+empId+'fullName '+fullName+'nicNo '+ nicNo+'addr1 '+	addr1+'addr2 '+addr2+'addr3 '+addr3+'contactRes '+contactRes+'contactMob '+contactMob+'contactOff '+contactOff
+//        +'email '+email+'gender '+gender+'dob '+dob+'provinceId '+provinceId+'districtId '+ districtId+'agaDivId '+agaDivId+'gsDivId '+gsDivId+'electroId '+electroId+'nationalId '+nationalId
+//        +'civilStatId '+ civilStatId+'drivLicNo '+drivLicNo+'childCnt '+childCnt+'religion '+religion+' dataReq= ' +dataReq+' id='+id);
+    if(dataReq == 'save'){
+        $.post('com.water.app/service/masterDataService.php', {empId: empId, fullName: fullName, nicNo: nicNo,
+            addr1: addr1, addr2: addr2, addr3: addr3, contactRes: contactRes, contactMob: contactMob,
+            contactOff: contactOff, email: email, gender: gender, dob: dob, provinceId: provinceId,
+            districtId: districtId, agaDivId: agaDivId, gsDivId: gsDivId, electroId: electroId, nationalId: nationalId,
+            civilStatId: civilStatId, drivLicNo: drivLicNo, childCnt: childCnt, religion: religion
+            ,service:'save', id:id, masters_save:'employee'}, function( data){
+//            alert(data);
+            if(data.msgType === 1){
+                alertify.success(data.msg);
+            }else if(data.msgType === 2){
+                alertify.error(data.msg);
+            }
+        }, "json");
+    }else if (dataReq == 'update'){
+
+    }else if(dataReq == 'delete'){
+
+    }
+}
+
+function employeeGuardianData (employee_id,guar_type, name,dob,natioanlityId,religionId,employment,workPlace,
+                               contactRes,contactMob,contactOff, id, dataReq){
+    if(dataReq == 'save'){
+        $.post('com.water.app/service/masterDataService.php', {employee_id: employee_id, guar_type: guar_type, name: name, dob: dob,
+            natioanlityId: natioanlityId, religionId: religionId, employment: employment, workPlace: workPlace,
+            contactRes: contactRes,contactMob: contactMob, contactOff: contactOff,
+            service:'save', id:id, masters_save:'emp_guardian'}, function(data){
+            if(data.msgType === 1){
+                alertify.success(data.msg);
+            }else if(data.msgType === 2){
+                alertify.error(data.msg);
+            }
+        }, "json");
+    }else if (dataReq == 'update'){
+
+    }else if(dataReq == 'delete'){
+
+    }
+}
+
+function employeeProfessionalData (employee_id,course_name, course_year,course_institute, id, dataReq){
+    alert(employee_id+" "+course_name+" "+course_year+" "+course_institute+" "+id+" "+dataReq)
+    if(dataReq == 'save'){
+        $.post('com.water.app/service/masterDataService.php', {employee_id: employee_id, course_name: course_name,
+            course_year: course_year, course_institute: course_institute,
+            service:'save', id:id, masters_save:'emp_prof_qualify'}, function(data){
+            if(data.msgType === 1){
+                alertify.success(data.msg);
+            }else if(data.msgType === 2){
+                alertify.error(data.msg);
+            }
+        }, "json");
+    }else if (dataReq == 'update'){
+
+    }else if(dataReq == 'delete'){
+
+    }
+}
+
+function employeeTrainingData (employee_id,training_name, training_type, training_date, training_duration,training_comment, id, dataReq){
+//    alert(employee_id+" "+training_name+" "+training_type+" "+training_date+" "+training_duration+" "+training_comment+" "+id+" "+dataReq)
+    if(dataReq == 'save'){
+        $.post('com.water.app/service/masterDataService.php', {employee_id: employee_id, training_name: training_name, training_type: training_type,
+            training_date: training_date, training_duration: training_duration, training_comment:  training_comment,
+            service:'save', id:id, masters_save:'emp_training'}, function(data){
+            if(data.msgType === 1){
+                alertify.success(data.msg);
+            }else if(data.msgType === 2){
+                alertify.error(data.msg);
+            }
+        }, "json");
+    }else if (dataReq == 'update'){
+
+    }else if(dataReq == 'delete'){
+
+    }
+}
+
+
+function employeeServiceData (employee_id,healthCentre, institueId, appointDate, absorbDate,gradeId,currBasicSalary
+    ,salaryDate,increment,stayFrom,stayTo,designationId,permanentDate, natureOfAppId, id, dataReq){
+//    alert(employee_id+" "+designationId+" "+instituteId+" "+workFromDate+" "+workToDate+" "+id+" "+dataReq)
+    if(dataReq == 'save'){
+        $.post('com.water.app/service/masterDataService.php', {employee_id: employee_id, healthCentre: healthCentre, institueId: institueId,
+            appointDate: appointDate, absorbDate: absorbDate, gradeId: gradeId,absorbDate: absorbDate,currBasicSalary: currBasicSalary,
+            salaryDate: salaryDate,increment: increment,stayFrom: stayFrom,stayTo: stayTo,designationId: designationId
+            ,permanentDate: permanentDate,natureOfAppId: natureOfAppId,service:'save', id:id, masters_save:'emp_service'}, function(data){
+            if(data.msgType === 1){
+                alertify.success(data.msg);
+            }else if(data.msgType === 2){
+                alertify.error(data.msg);
+            }
+        }, "json");
+    }else if (dataReq == 'update'){
+
+    }else if(dataReq == 'delete'){
+
+    }
+}
+
+function employeeServHistoryData (employee_id,designationId, instituteId, workFromDate, workToDate, id, dataReq){
+//    alert(employee_id+" "+designationId+" "+instituteId+" "+workFromDate+" "+workToDate+" "+id+" "+dataReq)
+    if(dataReq == 'save'){
+        $.post('com.water.app/service/masterDataService.php', {employee_id: employee_id, designationId: designationId, instituteId: instituteId,
+            workFromDate: workFromDate, workToDate: workToDate,
+            service:'save', id:id, masters_save:'emp_serv_history'}, function(data){
+            if(data.msgType === 1){
+                alertify.success(data.msg);
+            }else if(data.msgType === 2){
+                alertify.error(data.msg);
+            }
+        }, "json");
+    }else if (dataReq == 'update'){
+
+    }else if(dataReq == 'delete'){
+
+    }
+}
